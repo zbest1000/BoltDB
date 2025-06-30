@@ -1,4 +1,4 @@
-THIS SHOULD BE A LINTER ERRORversion: '3.8'
+version: '3.8'
 
 services:
   postgres:
@@ -27,6 +27,29 @@ services:
     networks:
       - boltdb_network
 
+  ocr-service:
+    build:
+      context: ./services/ocr
+      dockerfile: Dockerfile
+    container_name: boltdb_ocr
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+    volumes:
+      - ocr_uploads:/app/uploads
+      - ocr_models:/app/models
+    networks:
+      - boltdb_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
   app:
     build:
       context: .
@@ -38,12 +61,14 @@ services:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://boltdb_user:boltdb_password@postgres:5432/boltdb
       - REDIS_URL=redis://redis:6379
+      - OCR_SERVICE_URL=http://ocr-service:8080
     volumes:
       - .:/app
       - /app/node_modules
     depends_on:
       - postgres
       - redis
+      - ocr-service
     networks:
       - boltdb_network
     command: npm run dev
@@ -51,6 +76,8 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  ocr_uploads:
+  ocr_models:
 
 networks:
   boltdb_network:
