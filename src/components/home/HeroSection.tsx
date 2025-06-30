@@ -9,6 +9,7 @@ import {
   CubeIcon,
   DocumentArrowDownIcon 
 } from '@heroicons/react/24/outline'
+import { AnimatedButton } from '@/components/ui/AnimatedButton'
 
 export function HeroSection() {
   const features = [
@@ -58,20 +59,28 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
-            <Link
-              href="/search"
-              className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-gray-900 bg-white hover:bg-gray-100 transition-colors duration-200"
-            >
-              <MagnifyingGlassIcon className="w-5 h-5 mr-2" />
-              Start Searching
+            <Link href="/search">
+              <AnimatedButton
+                variant="secondary"
+                size="lg"
+                icon={<MagnifyingGlassIcon className="w-5 h-5" />}
+                iconPosition="left"
+                className="text-gray-900 bg-white hover:bg-gray-100"
+              >
+                Start Searching
+              </AnimatedButton>
             </Link>
             
-            <Link
-              href="/ai-assistant"
-              className="inline-flex items-center px-8 py-4 border border-gray-300 text-lg font-medium rounded-lg text-white hover:bg-gray-800 transition-colors duration-200"
-            >
-              <SparklesIcon className="w-5 h-5 mr-2" />
-              Try AI Assistant
+            <Link href="/ai-assistant">
+              <AnimatedButton
+                variant="outline"
+                size="lg"
+                icon={<SparklesIcon className="w-5 h-5" />}
+                iconPosition="left"
+                className="border-gray-300 text-white hover:bg-gray-800"
+              >
+                Try AI Assistant
+              </AnimatedButton>
             </Link>
           </motion.div>
 
@@ -83,17 +92,36 @@ export function HeroSection() {
             className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto"
           >
             {features.map((feature, index) => (
-              <div key={feature.title} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-600 rounded-lg mb-4">
+              <motion.div 
+                key={feature.title} 
+                className="text-center"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: 0.6 + index * 0.1,
+                  type: "spring",
+                  stiffness: 100
+                }}
+              >
+                <motion.div 
+                  className="inline-flex items-center justify-center w-12 h-12 bg-primary-600 rounded-lg mb-4"
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    backgroundColor: "#2563eb"
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
                   <feature.icon className="w-6 h-6 text-white" />
-                </div>
+                </motion.div>
                 <h3 className="text-lg font-semibold text-white mb-2">
                   {feature.title}
                 </h3>
                 <p className="text-gray-400">
                   {feature.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -108,22 +136,42 @@ export function HeroSection() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">10M+</div>
-              <div className="text-sm text-gray-400">Components</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">500K+</div>
-              <div className="text-sm text-gray-400">CAD Files</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">1000+</div>
-              <div className="text-sm text-gray-400">Standards</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">99.9%</div>
-              <div className="text-sm text-gray-400">Uptime</div>
-            </div>
+            {[
+              { value: "10M+", label: "Components" },
+              { value: "500K+", label: "CAD Files" },
+              { value: "1000+", label: "Standards" },
+              { value: "99.9%", label: "Uptime" }
+            ].map((stat, index) => (
+              <motion.div 
+                key={stat.label}
+                className="text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: 0.8 + index * 0.1,
+                  type: "spring",
+                  stiffness: 120
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-white"
+                  initial={{ y: 20 }}
+                  animate={{ y: 0 }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: 0.9 + index * 0.1 
+                  }}
+                >
+                  {stat.value}
+                </motion.div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </motion.div>

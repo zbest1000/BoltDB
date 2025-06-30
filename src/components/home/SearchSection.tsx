@@ -8,6 +8,7 @@ import {
   SparklesIcon,
   FireIcon 
 } from '@heroicons/react/24/outline'
+import { AnimatedButton } from '@/components/ui/AnimatedButton'
 
 export function SearchSection() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -94,12 +95,15 @@ export function SearchSection() {
                   <SparklesIcon className="w-4 h-4 ml-1 text-purple-500" />
                   <span className="ml-1">AI</span>
                 </label>
-                <button
+                <AnimatedButton
                   type="submit"
-                  className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
+                  variant="primary"
+                  size="md"
+                  icon={<MagnifyingGlassIcon className="w-4 h-4" />}
+                  iconPosition="left"
                 >
                   Search
-                </button>
+                </AnimatedButton>
               </div>
             </div>
           </form>
@@ -111,14 +115,29 @@ export function SearchSection() {
               <span className="text-sm font-medium text-gray-600">Popular searches</span>
             </div>
             <div className="flex flex-wrap justify-center gap-2">
-              {popularSearches.map((search) => (
-                <button
+              {popularSearches.map((search, index) => (
+                <motion.button
                   key={search}
                   onClick={() => handlePopularSearch(search)}
-                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-sm font-medium transition-colors duration-200"
+                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-sm font-medium transition-all duration-200"
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -2,
+                    backgroundColor: '#f3f4f6'
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { 
+                      delay: index * 0.1,
+                      duration: 0.3
+                    }
+                  }}
                 >
                   {search}
-                </button>
+                </motion.button>
               ))}
             </div>
           </div>

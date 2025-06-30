@@ -9,6 +9,7 @@ import {
   EyeIcon,
   CubeIcon 
 } from '@heroicons/react/24/outline'
+import { AnimatedCard } from '@/components/ui/AnimatedCard'
 
 export function FeaturedComponents() {
   const featuredComponents = [
@@ -88,15 +89,14 @@ export function FeaturedComponents() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {featuredComponents.map((component, index) => (
-            <motion.div
+            <AnimatedCard
               key={component.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="card-hover group cursor-pointer"
+              className="p-6 group cursor-pointer"
+              hover={true}
+              magnetic={false}
+              tilt={false}
+              href={`/components/${component.id}`}
             >
-              <Link href={`/components/${component.id}`}>
                 <div className="relative">
                   {/* Placeholder for component image */}
                   <div className="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
@@ -140,8 +140,7 @@ export function FeaturedComponents() {
                     </div>
                   </div>
                 </div>
-              </Link>
-            </motion.div>
+            </AnimatedCard>
           ))}
         </motion.div>
 
