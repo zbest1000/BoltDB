@@ -1,4 +1,4 @@
-version: '3.8'
+THIS SHOULD BE A LINTER ERRORversion: '3.8'
 
 services:
   postgres:
