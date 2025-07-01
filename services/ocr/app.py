@@ -42,7 +42,7 @@ logger = structlog.get_logger()
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="BoltDB OCR Service",
+    title="MechHub OCR Service",
     description="PaddleOCR-powered text extraction service for technical drawings and component specifications",
     version="1.0.0",
     docs_url="/docs",

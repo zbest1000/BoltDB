@@ -1,10 +1,10 @@
-# BoltDB - Fastener & Component Search Engine
+# MechHub - Mechanical Components Search Engine
 
-> Professional engineering tool for fastener and component specifications with CAD links and AI-powered search.
+> Professional engineering platform for mechanical components with AI-powered search, BOM integration, and CAD exports.
 
 ## 🔧 Overview
 
-BoltDB is a modern, AI-enhanced search engine specifically designed for engineers and technical professionals who need to find, specify, and download fastener and component data quickly and accurately. Built with the latest web technologies and powered by OpenAI, BoltDB revolutionizes how engineers search for and work with fastener specifications.
+MechHub is a modern, AI-enhanced search engine specifically designed for engineers and technical professionals who need to find, specify, and download mechanical component data quickly and accurately. From bolts and fasteners to anchors, brackets, and specialized mechanical components for industries including avionics, MechHub revolutionizes how engineers search for and work with component specifications.
 
 ## ✨ Key Features
 
@@ -20,19 +20,28 @@ BoltDB is a modern, AI-enhanced search engine specifically designed for engineer
 - **Popular Searches**: See what other engineers are searching for
 
 ### 📐 Comprehensive Database
-- **10M+ Components**: Extensive fastener and hardware database
+- **10M+ Components**: Extensive mechanical components database including:
+  - Fasteners (bolts, screws, nuts, washers)
+  - Anchors and mounting hardware
+  - Brackets and supports
+  - Specialized avionics components
+  - Industrial mechanical accessories
 - **500K+ CAD Files**: Ready-to-download 3D models and technical drawings
-- **1000+ Standards**: ISO, DIN, ANSI, JIS, and more international standards
+- **1000+ Standards**: ISO, DIN, ANSI, JIS, AS9100, and more international standards
 - **Detailed Specifications**: Complete technical data for every component
 
-### 📁 CAD Integration
+### 📁 CAD Integration & BOM Support
 - **Multiple Formats**: STEP, IGES, STL, DWG support
 - **Instant Downloads**: No registration required for basic downloads
 - **3D Viewer**: Preview CAD models before downloading
+- **BOM Integration**: Seamless bill of materials management
+- **CAD Plugin Support**: SolidWorks, Fusion360, and other CAD platforms
 - **Version Control**: Track CAD file versions and updates
 
 ### 🏢 Professional Features
 - **User Management**: Role-based access for teams and organizations
+- **Real-time Supplier Pricing**: Live inventory and pricing data
+- **Procurement Integration**: APIs for procurement systems
 - **Download Analytics**: Track usage and popular components
 - **API Access**: RESTful API for integration with CAD software
 - **Enterprise Support**: Dedicated support for business users
@@ -70,8 +79,8 @@ BoltDB is a modern, AI-enhanced search engine specifically designed for engineer
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/zbest1000/BoltDB.git
-cd BoltDB
+git clone https://github.com/zbest1000/MechHub.git
+cd MechHub
 ```
 
 2. **Run the setup script**
@@ -142,7 +151,7 @@ docker-compose logs           # View logs
 ### Project Structure
 
 ```
-BoltDB/
+MechHub/
 ├── src/
 │   ├── app/                 # Next.js App Router
 │   │   ├── api/            # API routes
@@ -198,7 +207,7 @@ Required environment variables:
 
 ```env
 # Database
-DATABASE_URL="postgresql://username:password@localhost:5432/boltdb"
+DATABASE_URL="postgresql://username:password@localhost:5432/mechhub"
 
 # Redis
 REDIS_URL="redis://localhost:6379"
@@ -236,8 +245,8 @@ npm run test:coverage
 
 After running the seed script, you can log in with:
 
-- **Admin User**: admin@boltdb.com / admin123
-- **Engineer User**: engineer@boltdb.com / engineer123
+- **Admin User**: admin@mechhub.com / admin123
+- **Engineer User**: engineer@mechhub.com / engineer123
 
 ## 🚀 Deployment
 
@@ -276,16 +285,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Documentation**: Check our [Wiki](https://github.com/zbest1000/BoltDB/wiki)
-- **Issues**: Report bugs on [GitHub Issues](https://github.com/zbest1000/BoltDB/issues)
-- **Discussions**: Join our [GitHub Discussions](https://github.com/zbest1000/BoltDB/discussions)
-- **Email**: support@boltdb.com
+- **Documentation**: Check our [Wiki](https://github.com/zbest1000/MechHub/wiki)
+- **Issues**: Report bugs on [GitHub Issues](https://github.com/zbest1000/MechHub/issues)
+- **Discussions**: Join our [GitHub Discussions](https://github.com/zbest1000/MechHub/discussions)
+- **Email**: support@mechhub.com
 
 ## 🎖️ Acknowledgments
 
 - OpenAI for providing the GPT-4 API
 - The engineering community for feedback and requirements
-- All contributors who help make BoltDB better
+- All contributors who help make MechHub better
 
 ---
 

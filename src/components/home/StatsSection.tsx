@@ -21,7 +21,7 @@ export function StatsSection() {
     {
       value: '50K+',
       label: 'Engineers',
-      description: 'Trust BoltDB daily'
+      description: 'Trust MechHub daily'
     }
   ]
 
@@ -39,7 +39,7 @@ export function StatsSection() {
             Trusted by Engineers Worldwide
           </h2>
           <p className="text-lg text-gray-600">
-            Join thousands of professionals who rely on BoltDB for their engineering projects
+            Join thousands of professionals who rely on MechHub for their engineering projects
           </p>
         </motion.div>
 

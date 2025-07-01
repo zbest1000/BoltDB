@@ -77,8 +77,8 @@ export function FeaturesSection() {
             Everything You Need for Engineering Excellence
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            From AI-powered search to instant CAD downloads, BoltDB provides all the tools 
-            you need to find and specify fasteners with confidence and speed.
+            From AI-powered search to instant CAD downloads, MechHub provides all the tools 
+            you need to find and specify mechanical components with confidence and speed.
           </p>
         </motion.div>
 
@@ -126,7 +126,7 @@ export function FeaturesSection() {
               Ready to revolutionize your engineering workflow?
             </h3>
             <p className="text-primary-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of engineers who trust BoltDB for their fastener specifications. 
+              Join thousands of engineers who trust MechHub for their mechanical component specifications. 
               Start with our free tier and upgrade as you grow.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

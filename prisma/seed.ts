@@ -10,13 +10,13 @@ async function main() {
   const hashedPassword = await bcrypt.hash('admin123', 10)
   const adminUser = await prisma.user.create({
     data: {
-      email: 'admin@boltdb.com',
+      email: 'admin@mechhub.com',
       username: 'admin',
       password: hashedPassword,
       firstName: 'Admin',
       lastName: 'User',
       role: UserRole.ADMIN,
-      company: 'BoltDB Inc.',
+      company: 'MechHub Inc.',
     },
   })
 
@@ -24,7 +24,7 @@ async function main() {
   const engineerPassword = await bcrypt.hash('engineer123', 10)
   const engineerUser = await prisma.user.create({
     data: {
-      email: 'engineer@boltdb.com',
+      email: 'engineer@mechhub.com',
       username: 'engineer',
       password: engineerPassword,
       firstName: 'John',
