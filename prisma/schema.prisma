@@ -1,0 +1,261 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  firstName String?
+  lastName  String?
+  role      UserRole @default(USER)
+  company   String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  searches       Search[]
+  favorites      Favorite[]
+  cadDownloads   CadDownload[]
+  aiInteractions AiInteraction[]
+
+  @@map("users")
+}
+
+model Component {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  category    String
+  subcategory String?
+  
+  // Fastener specific fields
+  type           ComponentType
+  material       String?
+  finish         String?
+  grade          String?
+  standard       String?      // ISO, ANSI, DIN, etc.
+  
+  // Specifications
+  specifications Specification[]
+  
+  // Dimensions (stored as JSON for flexibility)
+  dimensions     Json?
+  
+  // Files and media
+  cadFiles       CadFile[]
+  images         Image[]
+  
+  // Metadata
+  manufacturer   String?
+  partNumber     String?
+  sku            String?
+  price          Float?
+  availability   Boolean      @default(true)
+  stock          Int?
+  
+  // Search optimization
+  searchVector   String?      // For full-text search
+  tags           String[]
+  
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  // Relations
+  favorites      Favorite[]
+  searches       SearchResult[]
+
+  @@index([category, subcategory])
+  @@index([type])
+  @@index([material])
+  @@index([standard])
+  @@map("components")
+}
+
+model Specification {
+  id          String    @id @default(cuid())
+  componentId String
+  name        String    // e.g., "Thread Pitch", "Head Diameter"
+  value       String    // e.g., "1.5mm", "M8"
+  unit        String?   // e.g., "mm", "inch"
+  tolerance   String?   // e.g., "±0.1mm"
+  
+  component   Component @relation(fields: [componentId], references: [id], onDelete: Cascade)
+  
+  @@index([componentId])
+  @@map("specifications")
+}
+
+model CadFile {
+  id          String   @id @default(cuid())
+  componentId String
+  filename    String
+  originalName String
+  fileType    String   // step, iges, dwg, etc.
+  fileSize    Int
+  filePath    String
+  downloadUrl String?
+  
+  // CAD specific metadata
+  format      String?  // STEP, IGES, STL, etc.
+  version     String?
+  software    String?  // SolidWorks, AutoCAD, etc.
+  
+  component   Component @relation(fields: [componentId], references: [id], onDelete: Cascade)
+  downloads   CadDownload[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([componentId])
+  @@index([fileType])
+  @@map("cad_files")
+}
+
+model Image {
+  id          String    @id @default(cuid())
+  componentId String
+  filename    String
+  originalName String
+  filePath    String
+  alt         String?
+  caption     String?
+  isPrimary   Boolean   @default(false)
+  
+  component   Component @relation(fields: [componentId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime  @default(now())
+  
+  @@index([componentId])
+  @@map("images")
+}
+
+model Search {
+  id        String   @id @default(cuid())
+  userId    String?
+  query     String
+  filters   Json?    // Store search filters as JSON
+  results   SearchResult[]
+  
+  // AI Enhancement
+  aiEnhanced Boolean @default(false)
+  aiSuggestions Json?
+  
+  createdAt DateTime @default(now())
+  
+  user      User?    @relation(fields: [userId], references: [id])
+  
+  @@index([userId])
+  @@index([createdAt])
+  @@map("searches")
+}
+
+model SearchResult {
+  id          String    @id @default(cuid())
+  searchId    String
+  componentId String
+  relevance   Float?
+  position    Int
+  
+  search      Search    @relation(fields: [searchId], references: [id], onDelete: Cascade)
+  component   Component @relation(fields: [componentId], references: [id], onDelete: Cascade)
+  
+  @@index([searchId])
+  @@index([componentId])
+  @@map("search_results")
+}
+
+model Favorite {
+  id          String    @id @default(cuid())
+  userId      String
+  componentId String
+  
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  component   Component @relation(fields: [componentId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime  @default(now())
+  
+  @@unique([userId, componentId])
+  @@map("favorites")
+}
+
+model CadDownload {
+  id        String   @id @default(cuid())
+  userId    String?
+  cadFileId String
+  ipAddress String?
+  userAgent String?
+  
+  user      User?    @relation(fields: [userId], references: [id])
+  cadFile   CadFile  @relation(fields: [cadFileId], references: [id])
+  
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([cadFileId])
+  @@index([createdAt])
+  @@map("cad_downloads")
+}
+
+model AiInteraction {
+  id        String   @id @default(cuid())
+  userId    String?
+  type      AiInteractionType
+  input     String
+  output    String
+  model     String?  // GPT-4, GPT-3.5, etc.
+  tokens    Int?
+  
+  user      User?    @relation(fields: [userId], references: [id])
+  
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([type])
+  @@index([createdAt])
+  @@map("ai_interactions")
+}
+
+// Enums
+enum UserRole {
+  USER
+  ADMIN
+  ENGINEER
+  PREMIUM
+}
+
+enum ComponentType {
+  SCREW
+  BOLT
+  NUT
+  WASHER
+  RIVET
+  PIN
+  CLIP
+  SPRING
+  BEARING
+  GASKET
+  SEAL
+  FASTENER
+  HARDWARE
+  OTHER
+}
+
+enum AiInteractionType {
+  SEARCH_ENHANCEMENT
+  COMPONENT_RECOMMENDATION
+  SPECIFICATION_QUERY
+  COMPATIBILITY_CHECK
+  MATERIAL_ADVICE
+  GENERAL_QUERY
+}
