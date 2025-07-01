@@ -8,10 +8,10 @@ import { Footer } from '@/components/layout/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'BoltDB - Fastener & Component Search Engine',
-  description: 'Professional engineering tool for fastener and component specifications with CAD links and AI-powered search.',
-  keywords: 'fasteners, bolts, screws, nuts, washers, CAD, engineering, specifications',
-  authors: [{ name: 'BoltDB Team' }],
+  title: 'MechHub - Mechanical Components Search Engine',
+  description: 'Professional AI-powered search engine for mechanical components including fasteners, anchors, brackets, and specialized components for engineering and avionics industries.',
+  keywords: 'mechanical components, fasteners, bolts, anchors, brackets, avionics, engineering, CAD, BOM, AI search',
+  authors: [{ name: 'MechHub Team' }],
   viewport: 'width=device-width, initial-scale=1',
 }
 

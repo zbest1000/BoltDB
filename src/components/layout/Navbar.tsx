@@ -44,7 +44,7 @@ export function Navbar() {
                 <div className="h-8 w-8 bg-primary-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">B</span>
                 </div>
-                <span className="ml-2 text-xl font-bold text-gray-900">BoltDB</span>
+                <span className="ml-2 text-xl font-bold text-gray-900">MechHub</span>
               </Link>
             </div>
             

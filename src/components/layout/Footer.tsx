@@ -38,7 +38,7 @@ export function Footer() {
               <div className="h-8 w-8 bg-primary-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">B</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-white">BoltDB</span>
+              <span className="ml-2 text-xl font-bold text-white">MechHub</span>
             </div>
             <p className="text-gray-400 text-base">
               Professional fastener and component specification search engine with CAD links. 
@@ -130,7 +130,7 @@ export function Footer() {
         </div>
         <div className="mt-12 border-t border-gray-700 pt-8">
           <p className="text-base text-gray-400 xl:text-center">
-            &copy; 2024 BoltDB, Inc. All rights reserved. | Professional engineering tools for fastener specifications.
+            &copy; 2024 MechHub, Inc. All rights reserved. | Professional engineering tools for mechanical component specifications.
           </p>
         </div>
       </div>

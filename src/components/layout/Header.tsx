@@ -77,7 +77,7 @@ export function Header() {
                 <span className="text-white font-bold text-xl">B</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-gray-900">BoltDB</span>
+                <span className="text-xl font-bold text-gray-900">MechHub</span>
                 <span className="text-xs text-gray-500 -mt-1">Fastener Database</span>
               </div>
             </Link>
