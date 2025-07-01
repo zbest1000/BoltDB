@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# BoltDB Setup Script
-echo "🔧 Setting up BoltDB - Fastener & Component Search Engine"
+# MechHub Setup Script
+echo "🔧 Setting up MechHub - Mechanical Components Search Engine"
 echo "=================================================="
 
 # Check if Node.js is installed
@@ -70,11 +70,11 @@ echo ""
 echo "Next steps:"
 echo "1. Update your .env file with your OpenAI API key"
 echo "2. Run 'npm run dev' to start the development server"
-echo "3. Visit http://localhost:3000 to access BoltDB"
+echo "3. Visit http://localhost:3000 to access MechHub"
 echo ""
-echo "Default users created:"
-echo "- Admin: admin@boltdb.com / admin123"
-echo "- Engineer: engineer@boltdb.com / engineer123"
+echo "📧 Default login credentials:"
+echo "- Admin: admin@mechhub.com / admin123"
+echo "- Engineer: engineer@mechhub.com / engineer123"
 echo ""
 echo "Database Management:"
 echo "- View database: npm run db:studio"

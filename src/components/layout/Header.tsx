@@ -74,11 +74,11 @@ export function Header() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">B</span>
+                <span className="text-white font-bold text-xl">M</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-gray-900">MechHub</span>
-                <span className="text-xs text-gray-500 -mt-1">Fastener Database</span>
+                                  <span className="text-xs text-gray-500 -mt-1">Mechanical Components</span>
               </div>
             </Link>
           </div>
