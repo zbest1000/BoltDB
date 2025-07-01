@@ -22,10 +22,19 @@ export function Header() {
 
   const navigation = [
     { name: 'Products', href: '/products', hasDropdown: true },
-    { name: 'Categories', href: '/categories', hasDropdown: true },
+    { name: 'Enterprise', href: '/enterprise', hasDropdown: true },
     { name: 'Standards', href: '/standards' },
     { name: 'Technical Info', href: '/technical' },
     { name: 'About', href: '/about' },
+  ]
+
+  const enterpriseFeatures = [
+    { name: 'AI-Powered Search', href: '/enterprise/ai-search', description: 'Natural language component search' },
+    { name: 'BOM Manager', href: '/enterprise/bom-manager', description: 'Automated sourcing and pricing' },
+    { name: 'CAD Integration', href: '/enterprise/cad-integration', description: 'SolidWorks, Fusion 360 plugins' },
+    { name: 'Real-Time Pricing', href: '/enterprise/pricing', description: 'Live supplier inventory and pricing' },
+    { name: 'Enterprise Analytics', href: '/enterprise/analytics', description: 'Procurement optimization insights' },
+    { name: 'API Access', href: '/enterprise/api', description: 'RESTful APIs for system integration' },
   ]
 
   const productCategories = [
@@ -218,6 +227,38 @@ export function Header() {
                             <div className="text-sm text-gray-500 mt-1">{category.description}</div>
                           </Link>
                         ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Enterprise Dropdown */}
+                {item.hasDropdown && item.name === 'Enterprise' && (
+                  <div className="absolute left-0 mt-2 w-96 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="p-4">
+                      <div className="mb-4">
+                        <h4 className="font-semibold text-gray-900 mb-1">Enterprise Solutions</h4>
+                        <p className="text-sm text-gray-600">AI-powered tools for engineering teams</p>
+                      </div>
+                      <div className="grid grid-cols-1 gap-2">
+                        {enterpriseFeatures.map((feature) => (
+                          <Link
+                            key={feature.name}
+                            href={feature.href}
+                            className="block p-3 rounded-lg hover:bg-blue-50 transition-colors group/item"
+                          >
+                            <div className="font-medium text-gray-900 group-hover/item:text-blue-600">{feature.name}</div>
+                            <div className="text-sm text-gray-500 mt-1">{feature.description}</div>
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="mt-4 pt-4 border-t border-gray-200">
+                        <Link
+                          href="/enterprise"
+                          className="block w-full text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                        >
+                          View All Enterprise Features
+                        </Link>
                       </div>
                     </div>
                   </div>
